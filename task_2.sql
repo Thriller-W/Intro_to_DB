@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Books (
     FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
--- Create Customers table (with exact column sizes)
+-- Create Customers table
 CREATE TABLE IF NOT EXISTS Customers (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_name VARCHAR(215) NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS Customers (
     address TEXT
 );
 
--- Create Orders table (with exact structure)
+-- Create Orders table
 CREATE TABLE IF NOT EXISTS Orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT NOT NULL,
@@ -34,15 +34,16 @@ CREATE TABLE IF NOT EXISTS Orders (
     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
--- Create Order_Details table (match names and structure)
+-- Create Order_Details table
 CREATE TABLE IF NOT EXISTS Order_Details (
     order_detail_id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT NOT NULL,
     book_id INT NOT NULL,
-    quantity INT NOT NULL,
+    quantity DOUBLE NOT NULL,
     unit_price DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (order_id) REFERENCES Orders(order_id),
     FOREIGN KEY (book_id) REFERENCES Books(book_id)
 );
+
 
 
